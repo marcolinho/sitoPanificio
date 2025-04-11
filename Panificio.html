@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'Antico Prestino - Panificio Artigianale</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
+
+        :root {
+            --primary-color: #8B4513;
+            --secondary-color: #DEB887;
+            --text-color: #333;
+            --light-bg: #FFF8DC;
+            --dark-bg: #2C1810;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+
+        /* Header e Navigation */
+        header {
+            background-color: var(--light-bg);
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid var(--primary-color);
+            background: url('images/logo.png') center/cover;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                        url('images/hero-bread.jpg') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* Prodotti Section */
+        .products {
+            padding: 5rem 2rem;
+            background-color: var(--light-bg);
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-info h3 {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Chi Siamo Section */
+        .about {
+            padding: 5rem 2rem;
+            background: white;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        /* Contatti Section */
+        .contact {
+            padding: 5rem 2rem;
+            background-color: var(--light-bg);
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-info {
+            margin-top: 2rem;
+            display: grid;
+            gap: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-bg);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .social-links {
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            margin: 0 10px;
+            font-size: 1.5rem;
+            text-decoration: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+</head>
+<body>
+    <header class="main-header">
+        <div class="left-section">
+            <img src="images/Logo.jpeg" height=100px width=100px alt="Logo Panificio" class="logo">
+            <h1 class="company-name">Nome Panificio</h1>
+        </div>
+        <nav class="right-section">
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#prodotti">Prodotti</a></li>
+                <li><a href="#chi-siamo">Chi Siamo</a></li>
+                <li><a href="#contatti">Contatti</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>L'Antico Prestino</h1>
+            <p>Pane artigianale e dolci della tradizione dal 1996</p>
+            <a href="#products" class="cta-button">Scopri i Nostri Prodotti</a>
+        </div>
+    </section>
+
+    <section id="products" class="products">
+        <h2 class="section-title">I Nostri Prodotti</h2>
+
+        <div class="prodotti-container">
+            <div class="prodotto">
+                <a href="pane.html">
+                    <h3>Il Nostro Pane</h3>
+                    <p>Scopri la nostra selezione di pane artigianale</p>
+                </a>
+            </div>
+        
+            <div class="prodotto">
+                <a href="focaccia.html">
+                    <h3>Le Nostre Focacce</h3>
+                    <p>Esplora le nostre focacce tradizionali</p>
+                </a>
+            </div>
+        
+            <div class="prodotto">
+                <a href="dolci.html">
+                    <h3>I Nostri Dolci</h3>
+                    <p>Assapora i nostri dolci artigianali</p>
+                </a>
+            </div>
+        </div>
+        
+        <style>
+        .prodotti-container {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+        }
+        
+        .prodotto {
+            width: 30%;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        
+        .prodotto:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .prodotto a {
+            text-decoration: none;
+            color: inherit;
+        }
+        </style>
+
+
+
+
+    </section>
+
+    <section id="about" class="about">
+        <h2 class="section-title">Chi Siamo</h2>
+        <div class="about-content">
+                <h2>Panificio Artigianale dal 1996</h2>
+                <p>Dal 1996, passione e tradizione si fondono nel nostro panificio artigianale. Ogni giorno sforniamo pane e prodotti da forno utilizzando solo ingredienti selezionati e lievito madre. La qualità che si tramanda da generazioni, per portare sulla vostra tavola il sapore autentico del pane fatto con cura.</p>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2 class="section-title">Contatti</h2>
+        <div class="contact-content">
+            <div class="contact-info">
+                <p>📍 Piazza San Michele, Magnago (MI)</p>
+                <p>📞 Tel: +39 347 1962517</p>
+                <p>⏰ Orari:</p>
+                <p>Lun-Sab: 7:00-13:00</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 L'Antico Prestino - Tutti i diritti riservati</p>
+        <div class="social-links">
+            <a href="https://www.instagram.com/antico_prestino" target="_blank">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="tel:+39 347 1962517">
+                <i class="fas fa-phone"></i>
+            </a>
+            <a href="https://wa.me/3471962517" target="_blank">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            
+        </div>
+    </footer>
+</body>
+</html>
