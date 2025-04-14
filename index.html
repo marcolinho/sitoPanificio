@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
+     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>L'Antico Prestino - Panificio Artigianale</title>
     <style>
@@ -9,9 +9,10 @@
 
         :root {
             --primary-color: #8B4513;
-            --secondary-color: #DEB887;
-            --text-color: #333;
-            --light-bg: #FFF8DC;
+            --secondary-color: #E6BE8A;
+            --accent-color: #F4A460;
+            --text-color: #2C1810;
+            --light-bg: #FFF8E7;
             --dark-bg: #2C1810;
         }
 
@@ -25,47 +26,52 @@
             font-family: 'Poppins', sans-serif;
             line-height: 1.6;
             color: var(--text-color);
-            padding-top: 80px;
+            background: var(--light-bg) url('data:image/svg+xml,%3Csvg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%23d4b483" fill-opacity="0.1"%3E%3Cpath d="M0 0h20v20H0z"/%3E%3C/g%3E%3C/svg%3E');
         }
 
         /* Header e Navigation */
         header {
-            background-color: var(--light-bg);
+            background-color: rgba(255, 248, 231, 0.95);
+            padding: 1rem 2rem;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 15px rgba(139, 69, 19, 0.1);
+            backdrop-filter: blur(5px);
         }
 
-        #boxheader {
+        nav {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            width: 100%;
         }
 
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 10px;
-            flex-shrink: 0;
+            gap: 15px;
         }
 
         .logo-img {
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .logo-img:hover {
+            transform: scale(1.1);
         }
 
         .logo {
             font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             color: var(--primary-color);
-            white-space: nowrap;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
 
         .nav-links {
@@ -77,160 +83,238 @@
             text-decoration: none;
             color: var(--primary-color);
             font-weight: 600;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
         }
 
         .nav-links a:hover {
-            color: var(--secondary-color);
-        }
-
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            padding: 5px;
-        }
-
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background-color: var(--primary-color);
-            margin: 2px 0;
-            transition: 0.3s;
+            color: white;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.2);
         }
 
         /* Hero Section */
         .hero {
-            min-height: calc(100vh - 80px);
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
                         url('images/hero-bread.jpg') center/cover;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             color: white;
-            padding: 2rem 20px;
+            padding: 0 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
         }
 
         .hero-content {
             max-width: 800px;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
         }
 
         .hero-content h1 {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-size: 4rem;
             margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
         .hero-content p {
-            font-size: clamp(1rem, 2vw, 1.2rem);
+            font-size: 1.3rem;
             margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }
 
         .cta-button {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 30px;
-            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            text-decoration: none;
             display: inline-block;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
         .cta-button:hover {
-            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
         }
 
         /* Prodotti Section */
         .products {
-            padding: 5rem 2rem;
-            background-color: var(--light-bg);
+            padding: 6rem 2rem;
+            background-color: white;
+            position: relative;
         }
 
         .section-title {
             text-align: center;
             font-family: 'Playfair Display', serif;
-            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            font-size: 2.8rem;
             margin-bottom: 3rem;
             color: var(--primary-color);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--secondary-color);
         }
 
         .prodotti-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
+            padding: 20px;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 1rem;
         }
-
+        
         .prodotto {
-            background-color: white;
+            background: linear-gradient(145deg, #ffffff, #f5f5f5);
             padding: 2rem;
             text-align: center;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            transition: transform 0.3s ease;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(139, 69, 19, 0.1);
+            position: relative;
+            overflow: hidden;
         }
-
+        
         .prodotto:hover {
             transform: translateY(-5px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(139, 69, 19, 0.1);
+            background: linear-gradient(145deg, #fff8e7, #ffffff);
+            border-color: var(--secondary-color);
         }
 
+        .prodotto::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .prodotto:hover::before {
+            opacity: 1;
+        }
+        
         .prodotto a {
             text-decoration: none;
             color: inherit;
         }
 
         .prodotto h3 {
-            margin-bottom: 1rem;
             color: var(--primary-color);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .prodotto p {
+            color: var(--text-color);
+            font-size: 1.1rem;
         }
 
         /* Chi Siamo Section */
         .about {
-            padding: 5rem 2rem;
-            background: white;
+            padding: 6rem 2rem;
+            background: var(--light-bg);
+            position: relative;
         }
 
         .about-content {
             max-width: 800px;
             margin: 0 auto;
             text-align: center;
-            padding: 0 1rem;
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(139, 69, 19, 0.1);
+        }
+
+        .about-content h2 {
+            color: var(--primary-color);
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-color);
         }
 
         /* Contatti Section */
         .contact {
-            padding: 5rem 2rem;
-            background-color: var(--light-bg);
+            padding: 6rem 2rem;
+            background-color: white;
         }
 
         .contact-content {
-            max-width: 600px;
+            max-width: 800px;
             margin: 0 auto;
             text-align: center;
+            background: var(--light-bg);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(139, 69, 19, 0.1);
         }
 
         .contact-info {
             margin-top: 2rem;
             display: grid;
-            gap: 1rem;
-            padding: 2rem;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
         }
+
+        .contact-info p {
+            font-size: 1.1rem;
+            color: var(--text-color);
+        }
+
+        
 
         /* Footer */
         footer {
             background-color: var(--dark-bg);
             color: white;
-            padding: 2rem;
+            padding: 3rem 2rem;
             text-align: center;
         }
 
@@ -241,81 +325,55 @@
         .social-links a {
             color: white;
             margin: 0 15px;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             text-decoration: none;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
+            opacity: 0.8;
         }
 
         .social-links a:hover {
-            color: var(--secondary-color);
+            opacity: 1;
+            transform: translateY(-3px);
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .hamburger {
-                display: flex;
-            }
-
             .nav-links {
                 display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background-color: var(--light-bg);
-                flex-direction: column;
-                align-items: center;
-                padding: 1rem;
-                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             }
 
-            .nav-links.active {
-                display: flex;
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
             }
 
             .logo-img {
-                width: 35px;
-                height: 35px;
+                width: 40px;
+                height: 40px;
             }
 
             .logo {
-                font-size: 1.2rem;
-            }
-
-            .hero {
-                padding: 1rem;
+                font-size: 1.4rem;
             }
 
             .prodotti-container {
                 grid-template-columns: 1fr;
-                padding: 0 1rem;
+                padding: 10px;
             }
 
-            .prodotto {
-                margin: 0 auto;
-                max-width: 400px;
+            .about-content, .contact-content {
+                padding: 2rem;
             }
 
-            .contact-info {
-                padding: 1rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            #boxheader {
-                padding: 1rem;
-            }
-
-            .hero-content h1 {
-                font-size: 2rem;
-            }
-
-            .cta-button {
-                padding: 0.8rem 1.5rem;
-            }
-
-            .section-title {
-                font-size: 1.8rem;
+            .map-container {
+                height: 300px;
             }
         }
     </style>
@@ -323,15 +381,10 @@
 </head>
 <body>
     <header>
-        <div id="boxheader">
+        <nav>
             <div class="logo-container">
                 <img src="images/Logo.jpeg" alt="Logo Antico Prestino" class="logo-img">
                 <div class="logo">L'Antico Prestino</div>
-            </div>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
             </div>
             <div class="nav-links">
                 <a href="#home">Home</a>
@@ -339,13 +392,13 @@
                 <a href="#about">Chi Siamo</a>
                 <a href="#contact">Contatti</a>
             </div>
-        </div>
+        </nav>
     </header>
 
     <section id="home" class="hero">
         <div class="hero-content">
             <h1>L'Antico Prestino</h1>
-            <p>Pane artigianale e dolci della tradizione dal 1985</p>
+            <p>Pane artigianale e dolci della tradizione dal 1996</p>
             <a href="#products" class="cta-button">Scopri i Nostri Prodotti</a>
         </div>
     </section>
@@ -355,19 +408,21 @@
         <div class="prodotti-container">
             <div class="prodotto">
                 <a href="pane.html">
-                    <h3>Il Nostro Pane</h3>
+                    <h3>Pane</h3>
                     <p>Scopri la nostra selezione di pane artigianale</p>
                 </a>
             </div>
+        
             <div class="prodotto">
                 <a href="focaccia.html">
-                    <h3>Le Nostre Focacce</h3>
+                    <h3>Pizze & Focacce</h3>
                     <p>Esplora le nostre focacce tradizionali</p>
                 </a>
             </div>
+        
             <div class="prodotto">
                 <a href="dolci.html">
-                    <h3>I Nostri Dolci</h3>
+                    <h3>Dolci</h3>
                     <p>Assapora i nostri dolci artigianali</p>
                 </a>
             </div>
@@ -391,39 +446,26 @@
                 <p>⏰ Orari:</p>
                 <p>Lun-Sab: 7:00-12:50</p>
             </div>
+            <div class="map-container">
+                <div id="map"></div>
+            </div>
         </div>
     </section>
 
     <footer>
         <p>&copy; 2025 L'Antico Prestino - Tutti i diritti riservati</p>
         <div class="social-links">
-            <a href="https://www.instagram.com/antico_prestino" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="tel:+393471962517"><i class="fas fa-phone"></i></a>
-            <a href="https://wa.me/393471962517" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://www.instagram.com/antico_prestino" target="_blank">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="tel:+39 347 1962517">
+                <i class="fas fa-phone"></i>
+            </a>
+            <a href="https://wa.me/3471962517" target="_blank">
+                <i class="fab fa-whatsapp"></i>
+            </a>
         </div>
     </footer>
 
-    <script>
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
-
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-
-        // Chiudi il menu quando si clicca su un link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-            });
-        });
-
-        // Chiudi il menu quando si scrolla
-        window.addEventListener('scroll', () => {
-            if (navLinks.classList.contains('active')) {
-                navLinks.classList.remove('active');
-            }
-        });
-    </script>
 </body>
 </html>
