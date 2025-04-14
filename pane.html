@@ -9,9 +9,10 @@
 
         :root {
             --primary-color: #8B4513;
-            --secondary-color: #DEB887; 
-            --text-color: #333;
-            --light-bg: #FFF8DC;
+            --secondary-color: #E6BE8A;
+            --accent-color: #F4A460;
+            --text-color: #2C1810;
+            --light-bg: #FFF8E7;
             --dark-bg: #2C1810;
         }
 
@@ -19,123 +20,200 @@
             font-family: 'Poppins', sans-serif;
             line-height: 1.6;
             color: var(--text-color);
-            background-color: var(--light-bg);
+            background: var(--light-bg) url('data:image/svg+xml,%3Csvg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%23d4b483" fill-opacity="0.1"%3E%3Cpath d="M0 0h20v20H0z"/%3E%3C/g%3E%3C/svg%3E');
             margin: 0;
-            padding: 20px;
+            padding: 0;
         }
 
         .header {
             display: flex;
             align-items: center;
-            padding: 20px;
+            padding: 15px 40px;
             position: fixed;
             top: 0;
             left: 0;
-            background-color: var(--light-bg);
+            background-color: rgba(255, 248, 231, 0.95);
             width: 100%;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 15px rgba(139, 69, 19, 0.1);
             z-index: 1000;
+            backdrop-filter: blur(5px);
         }
 
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
         }
 
         .logo {
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.1);
         }
 
         .brand-name {
             font-family: 'Playfair Display', serif;
             color: var(--primary-color);
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             margin: 0;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
 
         .lista-prodotti {
-            max-width: 800px;
+            max-width: 900px;
             width: 90%;
-            margin-top: 120px;
             margin: 120px auto 40px auto;
-            padding: 30px;
+            padding: 40px;
             background-color: white;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(139, 69, 19, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lista-prodotti::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
         }
 
         h2 {
             font-family: 'Playfair Display', serif;
             color: var(--primary-color);
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--secondary-color);
         }
 
         ul {
             list-style: none;
             padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
         }
 
-        li {
-            padding: 15px;
-            margin: 10px 0;
-            border-bottom: 1px solid var(--secondary-color);
+        .product-card {
+            padding: 20px;
+            margin: 0;
+            background: linear-gradient(145deg, #ffffff, #f5f5f5);
+            border-radius: 15px;
             font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            border: 1px solid rgba(139, 69, 19, 0.1);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(139, 69, 19, 0.2);
+            background: linear-gradient(145deg, #fff8e7, #ffffff);
+            color: var(--primary-color);
+            border-color: var(--secondary-color);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
             transition: transform 0.3s ease;
         }
 
-        li:hover {
-            transform: translateX(10px);
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+
+        .product-name {
+            font-weight: 600;
             color: var(--primary-color);
+            margin: 10px 0;
         }
 
         a {
             display: inline-block;
-            margin-top: 30px;
-            padding: 12px 24px;
-            background-color: var(--primary-color);
+            margin-top: 40px;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
             color: white;
             text-decoration: none;
-            border-radius: 30px;
-            transition: background-color 0.3s ease;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.2);
         }
 
         a:hover {
-            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 69, 19, 0.3);
+            background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
         }
 
-        @media screen and (max-width: 480px) {
+        @media screen and (max-width: 768px) {
             .header {
-                padding: 15px;
+                padding: 15px 20px;
             }
 
             .logo {
-                width: 30px;
-                height: 30px;
+                width: 40px;
+                height: 40px;
             }
 
             .brand-name {
-                font-size: 1.2rem;
+                font-size: 1.4rem;
             }
 
             h2 {
-                font-size: 1.8rem;
+                font-size: 2.2rem;
             }
 
             .lista-prodotti {
-                padding: 15px;
+                padding: 25px;
+                margin-top: 100px;
+            }
+
+            ul {
+                grid-template-columns: 1fr;
             }
 
             li {
-                padding: 10px;
+                padding: 15px;
             }
 
             a {
-                padding: 10px 20px;
+                padding: 12px 25px;
+            }
+
+            .product-image {
+                height: 180px;
             }
         }
     </style>
@@ -148,15 +226,75 @@
         </div>
     </header>
     <div class="lista-prodotti">
-        <h2>Il Nostro Pane</h2>
+        <h2>Pane</h2>
         <ul>
-            <li>Pane Casereccio</li>
-            <li>Pane Integrale</li>
-            <li>Pane ai Cereali</li>
-            <li>Pane di Segale</li>
-            <li>Filoni</li>
-            <li>Ciabatte</li>
-            <li>Pagnotte</li>
+            <li class="product-card">
+                <img src="images/fotoPane/Arabo.png" alt="Arabo" class="product-image">
+                <div class="product-name">Arabo</div>
+            </li>
+            <li class="product-card">
+                <img src="images/fotoPane/Bocconcino.png" alt="Bocconcino" class="product-image">
+                <div class="product-name">Bocconcino</div>
+            </li>
+            <li class="product-card">
+                <img src="images/fotoPane/CurcumaSemi.png" alt="Curcuma ai semi" class="product-image">
+                <div class="product-name">Curcuma con sesamo</div>
+            </li>
+            <li class="product-card">
+                <img src="images/fotoPane/Francesino.png" alt="Francesino" class="product-image">
+                <div class="product-name">Francesino</div>
+            </li>
+            <li class="product-card">
+                <img src="images/fotoPane/Tartaruga.png" alt="tartaruga" class="product-image">
+                <div class="product-name">Tartaruga</div>
+            </li>
+            <li class="product-card">
+                <img src="images/fotoPane/Michetta.png" alt="Michetta" class="product-image">
+                <div class="product-name">Michetta</div>
+            </li>
+            <li class="product-card">
+                <img src="images/fotoPane/IntegraleCrusca.png" alt="IntegraleCrusca" class="product-image">
+                <div class="product-name">Integrale con Crusca</div>
+            </li>
+            <li class="product-card">
+                <img src="images/fotoPane/PagnottaIntegrale.png" alt="Pagnotte" class="product-image">
+                <div class="product-name">Pagnotta integrale</div>
+            </li>
+            <li class="product-card">
+                <img src="images/fotoPane/PanFocaccia.png" alt="Pan focaccia" class="product-image">
+                <div class="product-name">Pan focaccia</div>
+            </li>
+            <li class="product-card">
+                <img src="images/fotoPane/PanFocacciaIntegrale.png" alt="Pan focaccia integrale" class="product-image">
+                <div class="product-name">Pan focaccia integrale</div>
+            </li>
+            <li class="product-card">
+                <img src="images/fotoPane/PanFocaccina.png" alt="Pan focaccina" class="product-image">
+                <div class="product-name">Pan focacccina</div>
+            </li>
+            
+            <li class="product-card">
+                <img src="images/fotoPane/Siciliano.png" alt="Siciliano" class="product-image">
+                <div class="product-name">Siciliano</div>
+            </li>
+            <li class="product-card">
+                <img src="images/fotoPane/SicilianoSesamo.png" alt="Siciliano sesamo" class="product-image">
+                <div class="product-name">Siciliano con sesamo</div>
+            </li>
+            <li class="product-card">
+                <img src="images/fotoPane/SicilianoSesamo8.png" alt="Siciliano sesamo 8" class="product-image">
+                <div class="product-name">Siciliano con sesamo a forma di 8</div>
+            </li>
+           
+            <li class="product-card">
+                <img src="images/fotoPane/X.png" alt="X" class="product-image">
+                <div class="product-name">Pasta dura a forma di X</div>
+            </li> 
+            <li class="product-card">
+                <img src="images/fotoPane/Biova.png" alt="Biova" class="product-image">
+                <div class="product-name">Biova</div>
+            </li>
+
         </ul>
         <a href="index.html">Torna alla Home</a>
     </div>
