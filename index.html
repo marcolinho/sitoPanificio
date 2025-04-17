@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-     <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>L'Antico Prestino - Panificio Artigianale</title>
     <style>
@@ -26,13 +26,13 @@
             font-family: 'Poppins', sans-serif;
             line-height: 1.6;
             color: var(--text-color);
-            background: var(--light-bg) url('data:image/svg+xml,%3Csvg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%23d4b483" fill-opacity="0.1"%3E%3Cpath d="M0 0h20v20H0z"/%3E%3C/g%3E%3C/svg%3E');
+            background: var(--light-bg);
+            padding-top: 80px;
         }
 
         /* Header e Navigation */
         header {
-            background-color: rgba(255, 248, 231, 0.95);
-            padding: 1rem 2rem;
+            background-color: var(--light-bg);
             position: fixed;
             width: 100%;
             top: 0;
@@ -41,12 +41,14 @@
             backdrop-filter: blur(5px);
         }
 
-        nav {
+        #boxheader {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
         }
 
         .logo-container {
@@ -94,9 +96,28 @@
             box-shadow: 0 4px 15px rgba(139, 69, 19, 0.2);
         }
 
+        /* Menu Hamburger */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+            margin-left: 20px;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary-color);
+            transition: all 0.3s ease-in-out;
+        }
+
         /* Hero Section */
         .hero {
-            height: 100vh;
+            min-height: 60vh;
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
                         url('images/hero-bread.jpg') center/cover;
             display: flex;
@@ -104,9 +125,8 @@
             justify-content: center;
             text-align: center;
             color: white;
-            padding: 0 20px;
+            padding: 2rem;
             position: relative;
-            overflow: hidden;
         }
 
         .hero::before {
@@ -129,13 +149,13 @@
 
         .hero-content h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 4rem;
+            font-size: clamp(2.5rem, 5vw, 4rem);
             margin-bottom: 1rem;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
         .hero-content p {
-            font-size: 1.3rem;
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
             margin-bottom: 2rem;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }
@@ -166,7 +186,6 @@
         .products {
             padding: 6rem 2rem;
             background-color: white;
-            position: relative;
         }
 
         .section-title {
@@ -194,11 +213,11 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
-            padding: 20px;
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 1rem;
         }
-        
+
         .prodotto {
             background: linear-gradient(145deg, #ffffff, #f5f5f5);
             padding: 2rem;
@@ -209,7 +228,7 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         .prodotto:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 30px rgba(139, 69, 19, 0.1);
@@ -232,7 +251,7 @@
         .prodotto:hover::before {
             opacity: 1;
         }
-        
+
         .prodotto a {
             text-decoration: none;
             color: inherit;
@@ -254,7 +273,6 @@
         .about {
             padding: 6rem 2rem;
             background: var(--light-bg);
-            position: relative;
         }
 
         .about-content {
@@ -277,7 +295,6 @@
         .about-content p {
             font-size: 1.1rem;
             line-height: 1.8;
-            color: var(--text-color);
         }
 
         /* Contatti Section */
@@ -300,15 +317,11 @@
             margin-top: 2rem;
             display: grid;
             gap: 1.5rem;
-            margin-bottom: 2rem;
         }
 
         .contact-info p {
             font-size: 1.1rem;
-            color: var(--text-color);
         }
-
-        
 
         /* Footer */
         footer {
@@ -338,20 +351,38 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
             .nav-links {
                 display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--light-bg);
+                padding: 1rem;
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             }
 
-            .hero-content h1 {
-                font-size: 2.8rem;
+            .nav-links.active {
+                display: flex;
             }
 
-            .hero-content p {
-                font-size: 1.1rem;
+            .menu-toggle.active span:nth-child(1) {
+                transform: translateY(9px) rotate(45deg);
             }
 
-            .section-title {
-                font-size: 2.2rem;
+            .menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .menu-toggle.active span:nth-child(3) {
+                transform: translateY(-9px) rotate(-45deg);
             }
 
             .logo-img {
@@ -363,17 +394,21 @@
                 font-size: 1.4rem;
             }
 
-            .prodotti-container {
-                grid-template-columns: 1fr;
-                padding: 10px;
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .prodotto {
+                margin: 0 auto;
+                max-width: 400px;
             }
 
             .about-content, .contact-content {
                 padding: 2rem;
-            }
-
-            .map-container {
-                height: 300px;
             }
         }
     </style>
@@ -381,18 +416,26 @@
 </head>
 <body>
     <header>
-        <nav>
+        <div id="boxheader">
             <div class="logo-container">
                 <img src="images/Logo.jpeg" alt="Logo Antico Prestino" class="logo-img">
                 <div class="logo">L'Antico Prestino</div>
             </div>
-            <div class="nav-links">
-                <a href="#home">Home</a>
-                <a href="#products">I Nostri Prodotti</a>
-                <a href="#about">Chi Siamo</a>
-                <a href="#contact">Contatti</a>
-            </div>
-        </nav>
+            
+            <nav>
+                <div class="nav-links">
+                    <a href="#home">Home</a>
+                    <a href="#products">I Nostri Prodotti</a>
+                    <a href="#about">Chi Siamo</a>
+                    <a href="#contact">Contatti</a>
+                </div>
+                <div class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
     </header>
 
     <section id="home" class="hero">
@@ -412,14 +455,14 @@
                     <p>Scopri la nostra selezione di pane artigianale</p>
                 </a>
             </div>
-        
+            
             <div class="prodotto">
                 <a href="focaccia.html">
                     <h3>Pizze & Focacce</h3>
                     <p>Esplora le nostre focacce tradizionali</p>
                 </a>
             </div>
-        
+            
             <div class="prodotto">
                 <a href="dolci.html">
                     <h3>Dolci</h3>
@@ -446,9 +489,6 @@
                 <p>⏰ Orari:</p>
                 <p>Lun-Sab: 7:00-12:50</p>
             </div>
-            <div class="map-container">
-                <div id="map"></div>
-            </div>
         </div>
     </section>
 
@@ -458,14 +498,50 @@
             <a href="https://www.instagram.com/antico_prestino" target="_blank">
                 <i class="fab fa-instagram"></i>
             </a>
-            <a href="tel:+39 347 1962517">
+            <a href="tel:+393471962517">
                 <i class="fas fa-phone"></i>
             </a>
-            <a href="https://wa.me/3471962517" target="_blank">
+            <a href="https://wa.me/393471962517" target="_blank">
                 <i class="fab fa-whatsapp"></i>
             </a>
         </div>
     </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+
+            menuToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                this.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+
+            // Chiudi il menu quando si clicca su un link
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    menuToggle.classList.remove('active');
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            // Chiudi il menu quando si scrolla
+            window.addEventListener('scroll', () => {
+                if (navLinks.classList.contains('active')) {
+                    menuToggle.classList.remove('active');
+                    navLinks.classList.remove('active');
+                }
+            });
+
+            // Chiudi il menu quando si clicca fuori
+            document.addEventListener('click', (e) => {
+                if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
+                    menuToggle.classList.remove('active');
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
