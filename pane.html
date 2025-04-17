@@ -142,9 +142,10 @@
         .product-image {
             width: 100%;
             height: 200px;
-            object-fit: cover;
+            object-fit: contain;
             border-radius: 10px;
             transition: transform 0.3s ease;
+            padding: 10px;  
         }
 
         .product-card:hover .product-image {
@@ -221,7 +222,8 @@
 <body>
     <header class="header">
         <div class="logo-container">
-            <img src="images/Logo.jpeg" alt="Logo Antico Prestino" class="logo">
+                <img src="images/Logo.jpeg" alt="Logo Antico Prestino" class="logo">
+          
             <h1 class="brand-name">L'Antico Prestino</h1>
         </div>
     </header>
@@ -294,7 +296,18 @@
                 <img src="images/fotoPane/Biova.jpeg" alt="Biova" class="product-image">
                 <div class="product-name">Biova</div>
             </li>
-
+            <li class="product-card">
+                <img src="images/fotoPane/PaneOlive.png" alt="Pane alle olive" class="product-image">
+                <div class="product-name">Pane alle olive</div>
+            </li>
+             <li class="product-card">
+                <img src="images/fotoPane/SegaleSesamo.jpg" alt="Segale con sesamo" class="product-image">
+                <div class="product-name">Segale con sesamo</div>
+            </li>
+            <li class="product-card">
+                <img src="images/fotoPane/PagnottaSegale.jpeg" alt="Pagnotta di segale" class="product-image">
+                <div class="product-name">Pagnotta di segale </div>
+            </li>
         </ul>
         <a href="index.html">Torna alla Home</a>
     </div>
