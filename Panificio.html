@@ -1,358 +1,462 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>L'Antico Prestino - Panificio Artigianale</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L'Antico Prestino</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Josefin+Sans:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-        :root {
-            --primary-color: #8B4513;
-            --secondary-color: #DEB887;
-            --text-color: #333;
-            --light-bg: #FFF8DC;
-            --dark-bg: #2C1810;
-        }
+  :root {
+    --cream: #F5EDD8;
+    --wheat: #D4A96A;
+    --bark: #3A2010;
+    --ash: #6B4C2A;
+    --smoke: #FAF6EE;
+    --char: #1C0F05;
+  }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  html { scroll-behavior: smooth; }
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-        }
+  body {
+    font-family: 'Josefin Sans', sans-serif;
+    background: var(--smoke);
+    color: var(--bark);
+    overflow-x: hidden;
+  }
 
-        /* Header e Navigation */
-        header {
-            background-color: var(--light-bg);
-            padding: 1rem;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.4rem 3rem;
+    background: rgba(245,237,216,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(212,169,106,0.25);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    color: var(--bark);
+    text-transform: uppercase;
+  }
+  .nav-links { display: flex; gap: 2.5rem; }
+  .nav-links a {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--ash);
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--wheat); }
 
-        nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
 
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            color: var(--primary-color);
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
+  .hero-left {
+    background: var(--bark);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 5rem 5rem 5rem;
+    position: relative;
+    z-index: 1;
+  }
 
-        .logo-circle {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 2px solid var(--primary-color);
-            background: url('images/logo.png') center/cover;
-        }
+  .hero-eyebrow {
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--wheat);
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 1s 0.3s forwards;
+  }
 
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(3.5rem, 6vw, 5.5rem);
+    line-height: 1.05;
+    color: var(--cream);
+    opacity: 0;
+    animation: fadeUp 1s 0.5s forwards;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--wheat);
+  }
 
-        .nav-links a {
-            text-decoration: none;
-            color: var(--primary-color);
-            font-weight: 600;
-            transition: color 0.3s ease;
-        }
+  .hero-sub {
+    margin-top: 2.5rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    color: rgba(245,237,216,0.55);
+    line-height: 2;
+    opacity: 0;
+    animation: fadeUp 1s 0.7s forwards;
+  }
 
-        .nav-links a:hover {
-            color: var(--secondary-color);
-        }
+  .hero-cta {
+    display: inline-block;
+    margin-top: 3.5rem;
+    padding: 1rem 2.5rem;
+    border: 1px solid var(--wheat);
+    color: var(--wheat);
+    text-decoration: none;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    transition: all 0.4s;
+    width: fit-content;
+    opacity: 0;
+    animation: fadeUp 1s 0.9s forwards;
+  }
+  .hero-cta:hover {
+    background: var(--wheat);
+    color: var(--bark);
+  }
 
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
-                        url('images/hero-bread.jpg') center/cover;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            padding: 0 20px;
-        }
+  .hero-year {
+    position: absolute;
+    bottom: 3rem; left: 5rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    color: rgba(245,237,216,0.3);
+    opacity: 0;
+    animation: fadeUp 1s 1.1s forwards;
+  }
 
-        .hero-content h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-        }
+  .hero-right {
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-right img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: sepia(0.3) brightness(0.85);
+    transform: scale(1.05);
+    animation: slowZoom 12s ease-out forwards;
+  }
+  .hero-right::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(90deg, var(--bark) 0%, transparent 40%);
+  }
 
-        .hero-content p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-        }
+  .hero-line {
+    position: absolute;
+    top: 50%; right: -1px;
+    width: 1px; height: 120px;
+    background: var(--wheat);
+    transform: translateY(-50%);
+    opacity: 0.5;
+    z-index: 2;
+  }
 
-        .cta-button {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 30px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
+  .about {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 0;
+    padding: 8rem 0;
+    background: var(--cream);
+    position: relative;
+  }
 
-        .cta-button:hover {
-            background-color: var(--secondary-color);
-        }
+  .about-label {
+    padding: 0 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding-top: 0.5rem;
+    border-right: 1px solid rgba(58,32,16,0.12);
+  }
+  .about-label span {
+    font-size: 0.62rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--wheat);
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+  }
 
-        /* Prodotti Section */
-        .products {
-            padding: 5rem 2rem;
-            background-color: var(--light-bg);
-        }
+  .about-body {
+    padding: 0 5rem;
+  }
+  .about-body h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(2.5rem, 4vw, 3.8rem);
+    line-height: 1.2;
+    color: var(--bark);
+    margin-bottom: 2rem;
+  }
+  .about-body h2 em {
+    font-style: italic;
+    color: var(--ash);
+  }
+  .about-body p {
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
+    line-height: 2.2;
+    color: var(--ash);
+    max-width: 560px;
+  }
 
-        .section-title {
-            text-align: center;
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: var(--primary-color);
-        }
+  .about-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 9rem;
+    font-weight: 300;
+    color: rgba(58,32,16,0.06);
+    position: absolute;
+    right: 4rem; bottom: 2rem;
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
 
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--wheat), transparent);
+    margin: 0 4rem;
+  }
 
-        .product-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
+  .contact {
+    padding: 8rem 5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+    background: var(--smoke);
+  }
 
-        .product-card:hover {
-            transform: translateY(-10px);
-        }
+  .contact-left h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    line-height: 1.15;
+    color: var(--bark);
+    margin-bottom: 3rem;
+  }
+  .contact-left h2 em { font-style: italic; color: var(--wheat); }
 
-        .product-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
+  .info-block { margin-bottom: 2.5rem; }
+  .info-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--wheat);
+    margin-bottom: 0.6rem;
+  }
+  .info-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 300;
+    color: var(--bark);
+    line-height: 1.6;
+  }
 
-        .product-info {
-            padding: 1.5rem;
-        }
+  .contact-actions {
+    display: flex; flex-direction: column; gap: 1rem; margin-top: 3rem;
+  }
+  .action-link {
+    display: flex; align-items: center; gap: 1rem;
+    text-decoration: none;
+    padding: 1.2rem 1.8rem;
+    border: 1px solid rgba(58,32,16,0.12);
+    color: var(--bark);
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    transition: all 0.3s;
+    background: white;
+  }
+  .action-link:hover {
+    background: var(--bark);
+    color: var(--cream);
+    border-color: var(--bark);
+  }
+  .action-link svg { width: 18px; height: 18px; flex-shrink: 0; }
 
-        .product-info h3 {
-            font-family: 'Playfair Display', serif;
-            margin-bottom: 0.5rem;
-        }
+  .contact-right { padding-top: 1rem; }
+  .map-placeholder {
+    width: 100%; aspect-ratio: 4/3;
+    background: var(--cream);
+    border: 1px solid rgba(58,32,16,0.1);
+    overflow: hidden;
+  }
+  .map-placeholder iframe {
+    width: 100%; height: 100%; border: none;
+    filter: sepia(0.5) contrast(0.9);
+  }
 
-        /* Chi Siamo Section */
-        .about {
-            padding: 5rem 2rem;
-            background: white;
-        }
+  footer {
+    background: var(--char);
+    padding: 4rem 5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: var(--cream);
+    letter-spacing: 0.08em;
+  }
+  .footer-copy {
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    color: rgba(245,237,216,0.3);
+    text-transform: uppercase;
+  }
+  .footer-socials { display: flex; gap: 1.5rem; }
+  .footer-socials a {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(245,237,216,0.5);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .footer-socials a:hover { color: var(--wheat); }
 
-        .about-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes slowZoom {
+    from { transform: scale(1.05); }
+    to   { transform: scale(1); }
+  }
 
-        /* Contatti Section */
-        .contact {
-            padding: 5rem 2rem;
-            background-color: var(--light-bg);
-        }
-
-        .contact-content {
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .contact-info {
-            margin-top: 2rem;
-            display: grid;
-            gap: 1rem;
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--dark-bg);
-            color: white;
-            padding: 2rem;
-            text-align: center;
-        }
-
-        .social-links {
-            margin-top: 1rem;
-        }
-
-        .social-links a {
-            color: white;
-            margin: 0 10px;
-            font-size: 1.5rem;
-            text-decoration: none;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-        }
-    </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 1.5rem; }
+    .nav-links { gap: 1.5rem; }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 7rem 2rem 4rem; }
+    .hero-right { height: 55vw; }
+    .hero-line { display: none; }
+    .about { grid-template-columns: 1fr; padding: 5rem 0; }
+    .about-label { flex-direction: row; padding: 0 2rem 2rem; border-right: none; border-bottom: 1px solid rgba(58,32,16,0.12); }
+    .about-label span { writing-mode: horizontal-tb; transform: none; }
+    .about-body { padding: 2.5rem 2rem 0; }
+    .about-number { font-size: 5rem; right: 1rem; }
+    .contact { grid-template-columns: 1fr; padding: 5rem 2rem; gap: 3rem; }
+    footer { flex-direction: column; gap: 2rem; text-align: center; padding: 3rem 2rem; }
+  }
+</style>
 </head>
 <body>
-    <header class="main-header">
-        <div class="left-section">
-            <img src="images/Logo.jpeg" height=100px width=100px alt="Logo Panificio" class="logo">
-            <h1 class="company-name">Nome Panificio</h1>
-        </div>
-        <nav class="right-section">
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#prodotti">Prodotti</a></li>
-                <li><a href="#chi-siamo">Chi Siamo</a></li>
-                <li><a href="#contatti">Contatti</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>L'Antico Prestino</h1>
-            <p>Pane artigianale e dolci della tradizione dal 1996</p>
-            <a href="#products" class="cta-button">Scopri i Nostri Prodotti</a>
-        </div>
-    </section>
+<nav>
+  <div class="nav-logo">L'Antico Prestino</div>
+  <div class="nav-links">
+    <a href="#about">Chi siamo</a>
+    <a href="#contact">Contatti</a>
+  </div>
+</nav>
 
-    <section id="products" class="products">
-        <h2 class="section-title">I Nostri Prodotti</h2>
+<section class="hero" id="home">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Panificio Artigianale · Dal 1996</p>
+    <h1 class="hero-title">Il sapore<br>di <em>sempre,</em><br>ogni mattina.</h1>
+    <p class="hero-sub">
+      Pane, dolci e focacce fatti a mano<br>
+      con lievito madre e ingredienti selezionati.<br>
+      Magnago, dal 1996.
+    </p>
+    <a href="#about" class="hero-cta">Scopri chi siamo</a>
+    <span class="hero-year">Est. 1996 — Magnago (MI)</span>
+    <div class="hero-line"></div>
+  </div>
+  <div class="hero-right">
+    <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=900&q=80" alt="Pane artigianale">
+  </div>
+</section>
 
-        <div class="prodotti-container">
-            <div class="prodotto">
-                <a href="pane.html">
-                    <h3>Il Nostro Pane</h3>
-                    <p>Scopri la nostra selezione di pane artigianale</p>
-                </a>
-            </div>
-        
-            <div class="prodotto">
-                <a href="focaccia.html">
-                    <h3>Le Nostre Focacce</h3>
-                    <p>Esplora le nostre focacce tradizionali</p>
-                </a>
-            </div>
-        
-            <div class="prodotto">
-                <a href="dolci.html">
-                    <h3>I Nostri Dolci</h3>
-                    <p>Assapora i nostri dolci artigianali</p>
-                </a>
-            </div>
-        </div>
-        
-        <style>
-        .prodotti-container {
-            display: flex;
-            justify-content: space-around;
-            padding: 20px;
-        }
-        
-        .prodotto {
-            width: 30%;
-            padding: 20px;
-            text-align: center;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            transition: transform 0.3s ease;
-        }
-        
-        .prodotto:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        
-        .prodotto a {
-            text-decoration: none;
-            color: inherit;
-        }
-        </style>
+<section class="about" id="about">
+  <div class="about-label">
+    <span>La nostra storia</span>
+  </div>
+  <div class="about-body">
+    <h2>Passione e<br><em>tradizione</em><br>da trent'anni.</h2>
+    <p>
+      Dal 1996, ogni giorno usciamo dal letto prima dell'alba per sfornare
+      pane e dolci come si faceva una volta. Niente scorciatoie: solo lievito
+      madre, farine scelte e il tempo che ci vuole. L'Antico Prestino è
+      rimasto quello che era — un posto dove il profumo di pane fresco
+      racconta ancora qualcosa di vero.
+    </p>
+  </div>
+  <div class="about-number">1996</div>
+</section>
 
+<div class="divider"></div>
 
+<section class="contact" id="contact">
+  <div class="contact-left">
+    <h2>Vieni a<br><em>trovarci.</em></h2>
 
+    <div class="info-block">
+      <div class="info-label">Dove siamo</div>
+      <div class="info-value">Piazza San Michele<br>Magnago (MI)</div>
+    </div>
 
-    </section>
+    <div class="info-block">
+      <div class="info-label">Orari</div>
+      <div class="info-value">Lun – Sab<br>7:00 – 12:50</div>
+    </div>
 
-    <section id="about" class="about">
-        <h2 class="section-title">Chi Siamo</h2>
-        <div class="about-content">
-                <h2>Panificio Artigianale dal 1996</h2>
-                <p>Dal 1996, passione e tradizione si fondono nel nostro panificio artigianale. Ogni giorno sforniamo pane e prodotti da forno utilizzando solo ingredienti selezionati e lievito madre. La qualità che si tramanda da generazioni, per portare sulla vostra tavola il sapore autentico del pane fatto con cura.</p>
-        </div>
-    </section>
+    <div class="info-block">
+      <div class="info-label">Telefono</div>
+      <div class="info-value">+39 347 196 2517</div>
+    </div>
 
-    <section id="contact" class="contact">
-        <h2 class="section-title">Contatti</h2>
-        <div class="contact-content">
-            <div class="contact-info">
-                <p>📍 Piazza San Michele, Magnago (MI)</p>
-                <p>📞 Tel: +39 347 1962517</p>
-                <p>⏰ Orari:</p>
-                <p>Lun-Sab: 7:00-13:00</p>
-            </div>
-        </div>
-    </section>
+    <div class="contact-actions">
+      <a href="tel:+393471962517" class="action-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3h3l2 5-2.5 1.5a11 11 0 0 0 7 7L13 14l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 2 5a2 2 0 0 1 2-2z"/></svg>
+        Chiama
+      </a>
+      <a href="https://wa.me/3471962517" class="action-link" target="_blank">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        WhatsApp
+      </a>
+      <a href="https://www.instagram.com/antico_prestino" class="action-link" target="_blank">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        Instagram
+      </a>
+    </div>
+  </div>
 
-    <footer>
-        <p>&copy; 2025 L'Antico Prestino - Tutti i diritti riservati</p>
-        <div class="social-links">
-            <a href="https://www.instagram.com/antico_prestino" target="_blank">
-                <i class="fab fa-instagram"></i>
-            </a>
-            <a href="tel:+39 347 1962517">
-                <i class="fas fa-phone"></i>
-            </a>
-            <a href="https://wa.me/3471962517" target="_blank">
-                <i class="fab fa-whatsapp"></i>
-            </a>
-            
-        </div>
-    </footer>
+  <div class="contact-right">
+    <div class="map-placeholder">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2789.0!2d8.8065!3d45.5765!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786c5e0b0e0e0e1%3A0x1!2sPiazza+San+Michele%2C+Magnago+MI!5e0!3m2!1sit!2sit!4v1"
+        allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-brand"><em>L'Antico Prestino</em></div>
+  <div class="footer-copy">© 2025 — Tutti i diritti riservati</div>
+  <div class="footer-socials">
+    <a href="https://www.instagram.com/antico_prestino" target="_blank">Instagram</a>
+    <a href="https://wa.me/3471962517" target="_blank">WhatsApp</a>
+    <a href="tel:+393471962517">Telefono</a>
+  </div>
+</footer>
+
 </body>
 </html>
